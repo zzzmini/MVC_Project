@@ -22,5 +22,7 @@ public interface AdminMapper {
 
 	List<AdminDto> searchAdmin(@Param("category")String category, 
 			@Param("keyword")String keyword);
+	AdminDto searchAdmin(String id);
 
+	List<AdminDto> searchAdminOne(String a_id);
 }

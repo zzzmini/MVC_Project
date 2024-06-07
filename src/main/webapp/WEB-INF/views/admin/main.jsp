@@ -13,6 +13,7 @@
 		<li><a href="<c:url value='/admin/createAccountForm'/>">회원가입</a></li>
 		<li><a href="<c:url value='/admin/handlerInterceptor'/>">
 		HandlerInterceptor</a></li>
+		<li><a href="<c:url value='/admin/ajaxTest'/>">Ajax Test</a></li>
 	</ul>
 </body>
 </html>

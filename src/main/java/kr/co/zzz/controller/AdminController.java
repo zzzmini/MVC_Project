@@ -1,6 +1,7 @@
 package kr.co.zzz.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.zzz.dto.AdminDto;
 import kr.co.zzz.service.AdminService;
@@ -125,6 +128,43 @@ public class AdminController {
 	@GetMapping("/handlerInterceptor")
 	public String handlerInterceptor() {
 		return "/admin/handler_interceptor";
+	}
+	@GetMapping("/ajaxTest")
+	public String likeIdol() {
+		return "/admin/ajax_test";
+	}
+	
+	@PostMapping("/searchAjax")
+	@ResponseBody
+	public List<AdminDto> getListAdmin(@RequestBody Map<String, String> body) {
+		String keyword = body.get("keyword");
+		System.out.println("keyword = " + keyword);
+	
+//		List<AdminDto> adminDtos = adminService.searchAdminOne(keyword);
+		List<AdminDto> adminDtos = adminService.adminList();
+		System.out.println(adminDtos.toString());
+//		body.put("a_id", "admin");
+		return adminDtos;
+	}
+	
+	@PostMapping("/searchOneAjax")
+	@ResponseBody
+	public List<AdminDto> getOneListAdmin(@RequestBody Map<String, String> body) {
+		String keyword = body.get("keyword");
+		System.out.println("keyword = " + keyword);
+	
+		List<AdminDto> adminDtos = adminService.searchAdminOne(keyword);
+		System.out.println(adminDtos.toString());
+		return adminDtos;
+	}
+	
+	@PostMapping("/goTest")
+	@ResponseBody
+	public Map<String, String> goTest(@RequestBody Map<String, String> body) {
+		String keyword = body.get("player");
+		System.out.println("player = " + keyword);
+		body.put("goal", "33");
+		return body;
 	}
 }
 

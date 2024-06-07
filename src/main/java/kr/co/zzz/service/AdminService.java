@@ -51,6 +51,10 @@ public class AdminService {
 		return mapper.searchAdmin(category, keyword);
 	}
 
+	public List<AdminDto> searchAdminOne(String a_id) {
+		return mapper.searchAdminOne(a_id);
+	}
+
 }
 
 
